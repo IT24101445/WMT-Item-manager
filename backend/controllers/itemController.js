@@ -25,6 +25,7 @@ export const getItemById = async (req, res) => {
 
 export const createItem = async (req, res) => {
   try {
+    const { customerReviewCount = 0, ...rest } = req.body;
     const newItem = await Item.create(req.body);
     res.status(201).json(newItem);
   } catch (error) {
@@ -68,3 +69,6 @@ export const deleteItem = async (req, res) => {
     res.status(500).json({ message: "Failed to delete item" });
   }
 };
+
+
+
